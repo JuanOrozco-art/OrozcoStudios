@@ -1,0 +1,1121 @@
+/* ========================================================
+   OROZCO STUDIO'S — Light Luxury + Apple Liquid Glass
+   ======================================================== */
+
+/* ======================
+   1. Custom Properties
+   ====================== */
+:root {
+  /* Nueva Paleta Dark Luxury */
+  --bg-color: #000000;
+  --surface-color: #121212;
+  --text-main: #ffffff;
+  /* Cambiado a blanco para que sea legible */
+  --text-sec: #a0a0a0;
+  --accent-gold: #c5a059;
+  --border-color: rgba(255, 255, 255, 0.1);
+
+  /* Liquid Glass */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  /* Más oscuro para Dark Mode */
+  --glass-bg-strong: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-blur: blur(20px) saturate(180%);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+  /* Typography */
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  /* Spacing */
+  --section-padding: 120px 80px;
+  --container-max: 1400px;
+
+  /* Transitions */
+  --transition-smooth: 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-fast: 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ======================
+   2. Reset & Base
+   ====================== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+}
+
+::selection {
+  background: var(--accent-gold);
+  color: #fff;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ======================
+   3. Typography
+   ====================== */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+}
+
+p {
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  color: var(--text-secondary);
+}
+
+/* ======================
+   4. Liquid Glass Utility
+   ====================== */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+/* ======================
+   5. Header / Navigation
+   ====================== */
+#header {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  /* Ajustado al contenido */
+  height: 55px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  /* Reducimos ligeramente el gap */
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+}
+
+/* Forzamos a que los links no se rompan nunca */
+.nav-links {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+  white-space: nowrap;
+  /* ¡IMPORTANTE: Esto evita que se amontone! */
+}
+
+.nav-links a {
+  font-size: 0.75rem;
+  /* Fuente un poquito más pequeña para que quepa todo */
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  /* Evita que el nombre se rompa en dos líneas */
+  font-size: 1rem;
+  /* Ajustado para no opacar el resto */
+}
+
+.nav-logo {
+  max-height: 20px;
+  /* Un poco más pequeño para que no toque los bordes */
+  width: auto;
+}
+
+.header.hidden {
+  transform: translateY(-100%);
+}
+
+.header.scrolled {
+  background: rgba(0, 0, 0, 0.85);
+  /* Un poco más oscuro al hacer scroll */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.header nav {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 40px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.header .logo {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  margin-right: auto;
+}
+
+.nav-links a {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: var(--text-secondary);
+  position: relative;
+  padding: 4px 0;
+  transition: color var(--transition-fast);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--accent-gold);
+  transition: width var(--transition-smooth);
+}
+
+.nav-links a:hover {
+  color: var(--text-primary);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* CTA Button */
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: #fff;
+  /* Cambio clave: degradado metálico en lugar de color plano */
+  background: linear-gradient(135deg, #d4af37 0%, #a67c00 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  /* Borde sutil para más definición */
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  white-space: nowrap;
+  box-shadow: 0 4px 20px rgba(166, 124, 0, 0.3);
+}
+
+.btn-cta:hover {
+  /* El brillo al pasar el mouse */
+  background: linear-gradient(135deg, #f7d56c 0%, #d4af37 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
+}
+
+/* Hamburger */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1100;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--text-primary);
+  transition: all var(--transition-fast);
+  transform-origin: center;
+}
+
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(4px, 4px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 1050;
+  background: rgba(245, 245, 245, 0.92);
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-smooth);
+}
+
+.mobile-menu.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.mobile-menu ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+}
+
+.mobile-menu a {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: color var(--transition-fast);
+}
+
+.mobile-menu.active a {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobile-menu a:hover {
+  color: var(--accent-gold);
+}
+
+/* ======================
+   6. Hero Section
+   ====================== */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* El negro empieza mucho más abajo (85%), haciendo el difuminado más corto y sutil */
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.3) 70%, rgba(0, 0, 0, 1) 100%);
+}
+
+.hero-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 8vw;
+  color: white;
+  opacity: 0.1;
+  letter-spacing: 0.2em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Custom cursor dot (gold) */
+.cursor-dot {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent-gold);
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.hero:hover~.cursor-dot,
+.cursor-dot.visible {
+  opacity: 1;
+}
+
+.hero-bg-text {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 12vw, 12rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.08);
+  white-space: nowrap;
+  text-align: center;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: absolute;
+  z-index: 4;
+  bottom: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  pointer-events: none;
+}
+
+.hero-tagline {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2vw, 1.6rem);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.2em;
+  margin-bottom: -10px;
+}
+
+.hero-prompt {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--accent-gold);
+  letter-spacing: 0.3em;
+  opacity: 0.7;
+  transition: opacity 0.6s;
+}
+
+.hero-prompt.hidden {
+  opacity: 0;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.scroll-indicator span {
+  display: block;
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, var(--accent-gold), transparent);
+  animation: scrollPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+
+  50% {
+    opacity: 0.2;
+    transform: scaleY(0.3);
+    transform-origin: top;
+  }
+}
+
+/* ======================
+   7. Section Shared
+   ====================== */
+.section-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.section-header h2 {
+  margin-bottom: 16px;
+}
+
+.section-line {
+  width: 60px;
+  height: 2px;
+  margin: 0 auto;
+  background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+  border-radius: 2px;
+}
+
+/* Scroll-reveal base */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ======================
+   8. Portfolio Gallery
+   ====================== */
+/* ======================
+   8. Portfolio Gallery (Estilo amplio y elegante)
+   ====================== */
+/* ======================
+   8. Portfolio Gallery (Actualizado)
+   ====================== */
+
+/* 1. Eliminamos el max-width y margin aquí para que la sección sea 100% ancho */
+.portfolio {
+  position: relative;
+  padding: 100px 40px;
+  width: 100%;
+}
+
+/* 2. Este es el nuevo bloque que crea el fondo de lado a lado */
+.portfolio::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+
+  .portfolio::before {
+    /* ... resto de tu código ... */
+    /* Ajustado a 0.5 para mayor luminosidad */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('IMAGENES/Web (13).jpg');
+    /* ... resto de tu código ... */
+  }
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* 3. Mantenemos tu diseño original centrando el contenido interno */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  /* Esto mantiene tus fotos igual que antes */
+  margin: 0 auto;
+}
+
+/* El resto de tus clases (gallery-item, img, etc.) se quedan exactamente igual */
+.gallery-item {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 450px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.03);
+}
+
+.gallery-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0);
+  z-index: 2;
+  transition: border-color var(--transition-smooth);
+  pointer-events: none;
+}
+
+.gallery-item:hover::before {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* ======================
+   9. Services
+   ====================== */
+.servicios {
+  padding: var(--section-padding);
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.service-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 48px 36px;
+  text-align: center;
+  transition: all var(--transition-smooth);
+  box-shadow: var(--glass-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-smooth);
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  border-color: rgba(197, 160, 89, 0.2);
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+.service-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  background: var(--accent-gold-light);
+  color: var(--accent-gold);
+}
+
+.service-icon svg {
+  width: 32px;
+  height: 32px;
+  stroke: var(--accent-gold);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.service-card h3 {
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.service-card p {
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+/* ======================
+   10. About / Sobre Mí
+   ====================== */
+.sobre-mi {
+  padding: var(--section-padding);
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.about-portrait {
+  flex-shrink: 0;
+  width: 320px;
+  height: 320px;
+  border-radius: 28px;
+  overflow: hidden;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  padding: 12px;
+}
+
+.about-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-text h2 {
+  margin-bottom: 24px;
+}
+
+.about-text .about-line {
+  width: 48px;
+  height: 2px;
+  background: var(--accent-gold);
+  margin-bottom: 28px;
+  border-radius: 2px;
+}
+
+.about-text blockquote {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  font-style: italic;
+  color: var(--text-primary);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.about-text .about-signature {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--accent-gold);
+  letter-spacing: 0.05em;
+}
+
+/* ======================
+   11. Footer
+   ====================== */
+.footer {
+  position: relative;
+  padding: 60px 80px 40px;
+  text-align: center;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+}
+
+.footer-brand {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+.footer-socials {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.footer-socials a {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.footer-socials a:hover {
+  background: var(--accent-gold);
+  color: #fff;
+  border-color: var(--accent-gold);
+  transform: translateY(-3px);
+}
+
+.footer-socials svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.footer-copy {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+/* ======================
+   12. Animations
+   ====================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* ======================
+   13. Scrollbar
+   ====================== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-gold);
+}
+
+/* ======================
+   14. Responsive
+   ====================== */
+@media (max-width: 1024px) {
+  :root {
+    --section-padding: 80px 40px;
+  }
+
+  .gallery-grid {
+    grid-auto-rows: 300px;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-container {
+    gap: 48px;
+  }
+
+  .about-portrait {
+    width: 260px;
+    height: 260px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-padding: 64px 20px;
+  }
+
+  /* Header mobile */
+  .nav-links,
+  .header .btn-cta {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+    margin-left: auto;
+  }
+
+  .header nav {
+    padding: 0 20px;
+  }
+
+  /* Hero */
+  .hero-bg-text {
+    font-size: clamp(3rem, 14vw, 5rem);
+  }
+
+  .hero-content {
+    bottom: 100px;
+  }
+
+  .hero-prompt {
+    font-size: 0.7rem;
+  }
+
+  /* Canvas — switch to touch hint */
+  #hero-canvas {
+    cursor: default;
+  }
+
+  /* Gallery */
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 260px;
+    gap: 8px;
+  }
+
+  .gallery-item:nth-child(1) {
+    grid-row: span 2;
+  }
+
+  .gallery-item:nth-child(5) {
+    grid-column: span 1;
+  }
+
+  /* Services */
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .service-card {
+    padding: 36px 28px;
+  }
+
+  /* About */
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .about-portrait {
+    width: 220px;
+    height: 220px;
+    margin: 0 auto;
+  }
+
+  .about-text .about-line {
+    margin: 0 auto 28px;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 48px 20px 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 300px;
+  }
+
+  .gallery-item:nth-child(1),
+  .gallery-item:nth-child(5) {
+    grid-row: span 1;
+    grid-column: span 1;
+  }
+
+  .hero-tagline {
+    letter-spacing: 0.1em;
+  }
+}
+
+/* Lightbox estilo "iOS Floating Window" */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  /* Fondo oscuro mucho más suave para que no desaparezca el fondo */
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+  /* Blur más sutil para que se sienta profundidad */
+  backdrop-filter: blur(15px) saturate(180%);
+  -webkit-backdrop-filter: blur(15px) saturate(180%);
+  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lightbox.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.lightbox img {
+  max-width: 85%;
+  max-height: 85%;
+  border-radius: 20px;
+  /* Efecto de borde de cristal líquido */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* Sombra técnica: una sombra externa para profundidad y una interna para el filo */
+  box-shadow: 0 50px 100px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  /* Empezamos con una escala ligeramente menor para que "crezca" */
+  transform: scale(0.92) translateY(20px);
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.lightbox.active img {
+  transform: scale(1) translateY(0);
+}
+
+/* Corrección Logo en Header */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--text-primary);
+}
+
+.nav-logo {
+  height: 24px;
+  /* Esto controla el alto, ajusta si es muy grande */
+  width: auto;
+  /* Esto mantiene la proporción */
+  display: block;
+}
+
+/* Fondo sutil para la sección de Portfolio */
+#portfolio {
+  position: relative;
+  background-image: url('IMAGENES/Web (13).jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  /* Esto crea el efecto de profundidad */
+  padding-bottom: 80px;
+}
+
+/* Capa oscura para que el fondo sea sutil y no moleste */
+.portfolio::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+
+  /* Aquí está el truco: usamos un gradiente que se funde con el negro */
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 1) 0%,
+      /* Negro puro en el borde superior para fusionar */
+      rgba(0, 0, 0, 0.85) 20%,
+      /* Oscuridad sutil constante */
+      rgba(0, 0, 0, 0.85) 100%);
+  pointer-events: none;
+  /* Asegura que no interfiera con los clicks */
+}
+
+/* Aseguramos que el contenido esté sobre el fondo */
+#portfolio>* {
+  position: relative;
+  z-index: 2;
+}
