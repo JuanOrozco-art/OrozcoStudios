@@ -1119,28 +1119,3 @@ p {
   position: relative;
   z-index: 2;
 }
-
-/* --- Ajuste Definitivo Móvil --- */
-@media (max-width: 480px) {
-
-  /* 1. Ajuste de la etiqueta de imagen directamente */
-  .hero-image {
-    width: 100% !important;
-    height: auto !important;
-    /* Mantiene la proporción original y no corta la foto */
-    object-fit: contain !important;
-    /* Asegura que se vea completa */
-    display: block !important;
-  }
-
-  /* 2. Forzar visibilidad del menú en móvil */
-  /* Ajusta 'header' o 'nav' según cómo se llame tu contenedor de menú */
-  header,
-  .navbar,
-  .nav-menu {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    position: relative !important;
-  }
-}
