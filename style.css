@@ -1119,3 +1119,34 @@ p {
   position: relative;
   z-index: 2;
 }
+
+/* --- Ajustes para Celulares --- */
+@media (max-width: 480px) {
+
+  /* 1. Ajuste de la sección hero para que la foto no se corte */
+  .hero {
+    background-size: contain !important;
+    background-position: center top !important;
+    height: 300px !important;
+    background-color: #000 !important;
+  }
+
+  /* 2. Asegurar que el menú sea visible en móviles */
+  header,
+  nav,
+  .menu {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    padding: 10px !important;
+    position: relative !important;
+  }
+
+  /* 3. Ajuste del botón de contacto */
+  .boton-contacto,
+  .cta-button {
+    display: block !important;
+    margin-top: 10px !important;
+    padding: 10px 20px !important;
+  }
+}
