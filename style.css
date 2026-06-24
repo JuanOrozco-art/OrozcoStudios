@@ -1120,33 +1120,27 @@ p {
   z-index: 2;
 }
 
-/* --- Ajustes para Celulares --- */
+/* --- Ajuste Definitivo Móvil --- */
 @media (max-width: 480px) {
 
-  /* 1. Ajuste de la sección hero para que la foto no se corte */
-  .hero {
-    background-size: contain !important;
-    background-position: center top !important;
-    height: 300px !important;
-    background-color: #000 !important;
+  /* 1. Ajuste de la etiqueta de imagen directamente */
+  .hero-image {
+    width: 100% !important;
+    height: auto !important;
+    /* Mantiene la proporción original y no corta la foto */
+    object-fit: contain !important;
+    /* Asegura que se vea completa */
+    display: block !important;
   }
 
-  /* 2. Asegurar que el menú sea visible en móviles */
+  /* 2. Forzar visibilidad del menú en móvil */
+  /* Ajusta 'header' o 'nav' según cómo se llame tu contenedor de menú */
   header,
-  nav,
-  .menu {
+  .navbar,
+  .nav-menu {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    padding: 10px !important;
     position: relative !important;
-  }
-
-  /* 3. Ajuste del botón de contacto */
-  .boton-contacto,
-  .cta-button {
-    display: block !important;
-    margin-top: 10px !important;
-    padding: 10px 20px !important;
   }
 }
